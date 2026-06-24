@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DecodeLabs | Enterprise Random Password Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; }
+        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; }
+        .btn-primary { background-color: #3b82f6; border: none; }
+        .btn-primary:hover { background-color: #2563eb; }
+        .badge-nist { background-color: #10b981; color: #ffffff; font-weight: 600; }
+        .output-box { background-color: #0f172a; border: 1px dashed #64748b; font-family: monospace; word-break: break-all; }
+        
+        /* High-contrast explicit text color overwrites */
+        .text-high-contrast-label { color: #ffffff !important; }
+        .text-high-contrast-muted { color: #94a3b8 !important; }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6">
+                
+                <!-- System Header Section -->
+                <div class="text-center mb-4">
+                    <span class="text-uppercase tracking-wider text-high-contrast-muted fw-bold small">DecodeLabs Project 3</span>
+                    <h1 class="h3 fw-bold text-white mt-1">Random Entropy Engine</h1>
+                    <p class="text-high-contrast-muted small">Architecting secure credential systems for backend environments</p>
+                </div>
+
+                <div class="card p-4 shadow-lg">
+                    <form action="/" method="POST">
+                        <div class="mb-3">
+                            <!-- Input Label: Brightened to full solid white -->
+                            <label for="length" class="form-label text-high-contrast-label small fw-bold">Target Password Length</label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary fw-semibold" 
+                                   id="length" name="length" placeholder="e.g., 15" value="15" required>
+                            
+                            <!-- Form Context Helper: Optimized for readability -->
+                            <div class="form-text text-high-contrast-muted small mt-2">
+                                <span class="badge badge-nist">NIST 2024 Guideline</span> Minimum: 15 chars | Maximum: 64 chars.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold text-white">Generate Digital Shield</button>
+                    </form>
+
+                    <!-- Validation Errors Layer -->
+                    {% if error %}
+                    <div class="alert alert-danger mt-4 small border-0 bg-danger bg-opacity-20 text-danger fw-semibold" role="alert">
+                        <strong>Validation Fault:</strong> {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <!-- Provision Delivery Output Window -->
+                    {% if password %}
+                    <div class="mt-4 pt-3 border-top border-secondary">
+                        <label class="form-label text-success small fw-bold">✔ High-Integrity Credential Provisioned:</label>
+                        <!-- Output Box text changed to an ultra-bright neon cyan color (#06b6d4) for sharp contrast -->
+                        <div class="output-box p-3 rounded text-center text-wrap fs-5 fw-bold selection-all" style="color: #06b6d4 !important;">
+                            {{ password }}
+                        </div>
+                        <p class="text-high-contrast-muted text-center small mt-2">Click or drag over the password to copy. Absolute complexity preserved.</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+                
+                <!-- System Footer -->
+                <footer class="text-center mt-5 text-high-contrast-muted small">
+                    <p>&copy; 2026 DecodeLabs Industrial Training. Secure, Efficient, Maintainable.</p>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
